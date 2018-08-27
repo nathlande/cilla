@@ -35,7 +35,7 @@ except Exception as error:
 	print(error)
 with open("authToken.txt", "w") as token:
     token.write(str(client.authToken))
-clientMid = client.profile.mid
+clientMID = client.profile.mid
 clientStart = time.time()
 clientPoll = OEPoll(client)
 
@@ -416,7 +416,7 @@ def clientBot(op):
 
 		if op.type == 13:
 			print ("[ 13 ] NOTIFIED INVITE INTO GROUP")
-			if settings["autoJoin"] and clientMid in op.param3:
+			if settings["autoJoin"] and clientMID in op.param3:
 				client.acceptGroupInvitation(op.param1)
 				client.sendMention(op.param1, settings["autoJoinMessage"], [op.param2])
 
