@@ -1578,12 +1578,3 @@ if wait1["cvidpic"] == True:
 	wait1["cvidpic"] = False
 	cl.deletefile(path1)
 	cl.deletefile(path2)
-
-#cmdnya
-
-
-	elif cmd == "changedpvid":
-		wait1["foto1"] = True
-		cl.sendText(msg.to,"Kirim fotonya...")
-		
-		
