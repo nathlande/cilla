@@ -1448,14 +1448,14 @@ def clientBot(op):
 					if msg.contentType == 0:
 						if settings["autoRead"] == True:
 							client.sendChatChecked(to, msg_id)
-						if sender not in clientMid:
+						if sender not in clientMID:
 							if msg.toType != 0 and msg.toType == 2:
 								if 'MENTION' in msg.contentMetadata.keys()!= None:
 									names = re.findall(r'@(\w+)', text)
 									mention = ast.literal_eval(msg.contentMetadata['MENTION'])
 									mentionees = mention['MENTIONEES']
 									for mention in mentionees:
-										if clientMid in mention["M"]:
+										if clientMID in mention["M"]:
 											if settings["autoRespon"] == True:
 												client.sendMention(sender, settings["autoResponMessage"], [sender])
 											break
