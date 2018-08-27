@@ -117,13 +117,26 @@ def backupData():
 		logError(error)
 		return False
 
+def changeVideoAndPictureProfile(pict, vids):
+        try:
+            files = {'file': open(vids, 'rb')}
+            obs_params = client.genOBSParams({'oid': clientMID, 'ver': '2.0', 'type': 'video', 'cat': 'vp.mp4', 'name': 'Hello_World.mp4'})
+            data = {'params': obs_params}
+            r_vp = client.server.postContent('{}/talk/vp/upload.nhn'.format(str(client.server.LINE_OBS_DOMAIN)), data=data, files=files)
+            if r_vp.status_code != 201:
+                return "Failed update profile"
+            client.updateProfilePicture(pict, 'vp')
+            return "Success update profile"
+        except Exception as e:
+            raise Exception("Error change video and picture profile %s"%str(e))
+	
 def menuHelp():
 	if settings['setKey'] == True:
 		key = settings['keyCommand']
 	else:
 		key = ''
 	menuHelp =   "╭━━━━━━━━━━━━━━━━━━━━━" + "\n" + \
-                "┃🇮🇩┃🇮🇩🇮🇩〔 Aditmadzs 〕🇮🇩🇮🇩" + "\n" + \
+                "┃🇮🇩┃🇮🇩🇮🇩〔 NATH 〕🇮🇩🇮🇩" + "\n" + \
                 "┃🇮🇩┃" + "\n" + \
                 "┃🍁┃━━🍁〔 Help Message 〕🍁━━" + "\n" + \
                 "┃🍁┃━━━🍁〔 Menu 〕🍁━━━" + "\n" + \
@@ -207,7 +220,7 @@ def menuHelp():
                 "┃📀┃ " + key + "SearchMusic 「Search」" + "\n" + \
                 "┃📀┃ " + key + "SearchLyric 「Search」" + "\n" + \
                 "┃📀┃ " + key + "SearchYoutube 「Search」" + "\n" + \
-		        "╰━━━〔 BIG BOS: ©Aditmadzs™  〕"
+		        "╰━━━〔 NATH  〕"
 	return menuHelp
 
 def menuTextToSpeech():
@@ -270,7 +283,7 @@ def menuTextToSpeech():
 				"╠ " + key + "vi : Vietnamese" + "\n" + \
 				"╠ " + key + "cy : Welsh" + "\n" + \
 				"╚══[ Jangan Typo ]" + "\n" + "\n\n" + \
-				"Contoh : " + key + "say-id Aditmadzs"
+				"Contoh : " + key + "say-id Killswitch"
 	return menuTextToSpeech
 
 def menuTranslate():
@@ -386,7 +399,7 @@ def menuTranslate():
                        "┃🇮🇩┃ fil : Filipino" + "\n" + \
                        "┃🇮🇩┃ he : Hebrew" + "\n" + \
                        "╰━━〔 Jangan Typo 〕" + "\n" + "\n\n" + \
-		               "Contoh : " + key + "tr-id Aditmadzs"
+		               "Contoh : " + key + "tr-id Killswitch"
 	return menuTranslate
 
 def clientBot(op):
