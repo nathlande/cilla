@@ -1557,3 +1557,33 @@ def run():
 
 if __name__ == "__main__":
 	run()
+
+
+if msg.contentType == 1:
+	if wait1["foto1"] == True:
+		path = cl.downloadObjectMsg(msg.id,saveAs="LineAPI/tmp/{}-cpp.bin".format(msg.from_))
+		wait1["foto1"] = False
+		wait1["video"] = True
+		cl.sendMessage(msg.to,"Kirim video...")
+if msg.contentType == 2:
+	if wait1["video"] == True:
+		path2 = cl.downloadObjectMsg(msg.id,saveAs="LineAPI/tmp/{}-cvp.bin".format(msg.from_))
+		wait1["video"] = False
+		wait1["cvidpic"] = True
+if wait1["cvidpic"] == True:
+	cl.sendText(msg.to,"Update VideoProfile")
+	path1 = "LineAPI/tmp/{}-cpp.bin".format(msg.from_)
+	path2 = "LineAPI/tmp/{}-cvp.bin".format(msg.from_)
+	cl.updateVideoAndPictureProfile(path1, path2)
+	wait1["cvidpic"] = False
+	cl.deletefile(path1)
+	cl.deletefile(path2)
+
+#cmdnya
+
+
+	elif text == "changedpvid":
+		wait1["foto1"] = True
+		cl.sendText(msg.to,"Kirim fotonya...")
+		
+		
