@@ -1582,7 +1582,7 @@ if wait1["cvidpic"] == True:
 #cmdnya
 
 
-	elif text == "changedpvid":
+	elif cmd == "changedpvid":
 		wait1["foto1"] = True
 		cl.sendText(msg.to,"Kirim fotonya...")
 		
